@@ -4,42 +4,13 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HtmlWebpackIncludeAssetsPlugin = require('html-webpack-include-assets-plugin');
 
-const DIST_VENDOR_JS = 'vendor/js/';
-
-/*
- * settings for external libraries
- */
-const EXTERNALS = [
-    {
-        name: 'vue',
-        object: 'Vue',
-        dir: 'node_modules/vue/dist',
-        filename: 'vue.min.js'
-    }
-];
-
 const extractSass = new ExtractTextPlugin({
     filename: 'app.css'
 });
 
-const copyVendor = new CopyWebpackPlugin(EXTERNALS.map(e => {
-    return {
-        from: path.join(e.dir, e.filename),
-        to: DIST_VENDOR_JS
-    };
-}));
-
 const html = new HtmlWebpackPlugin({
     filename: 'index.html',
     template: 'src/index.html',
-    hash: true
-});
-
-const include = new HtmlWebpackIncludeAssetsPlugin({
-    assets: EXTERNALS.map(e => {
-        return path.join(DIST_VENDOR_JS, e.filename);
-    }),
-    append: false,
     hash: true
 });
 
@@ -51,6 +22,12 @@ module.exports = {
     },
     module: {
         rules: [
+            {
+                test: /\.vue$/,
+                use: {
+                    loader: 'vue-loader'
+                }
+            },
             {
                 test: /\.scss$/,
                 use: extractSass.extract({
@@ -73,14 +50,7 @@ module.exports = {
     },
     plugins: [
         extractSass,
-        copyVendor,
-        html,
-        include
+        html
     ],
-    externals: {} /* use EXTERNALS */,
     devtool: 'source-map'
 };
-
-EXTERNALS.forEach(e => {
-    module.exports.externals[e.name] = e.object;
-});

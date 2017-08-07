@@ -1,8 +1,6 @@
 import Vue from "vue";
+import MyComponent from './test.vue';
 
-var app = new Vue({
-  el: '#app',
-  data: {
-    message: 'Hello Vue!'
-  }
-});
+var app = new Vue(MyComponent).$mount('#app');
+
+window.app = app;
