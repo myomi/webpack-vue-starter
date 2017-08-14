@@ -1,6 +1,11 @@
 import Vue from "vue";
-import MyComponent from './test.vue';
 
-var app = new Vue(MyComponent).$mount('#app');
+import "../scss/index.scss";
+import "bootstrap";
+import modal from "./modal.vue";
+import SVGEditor from "./svg-editor.vue";
+
+Vue.component("modal", modal);
+var app = new Vue(SVGEditor).$mount("#app");
 
 window.app = app;

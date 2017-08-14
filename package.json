@@ -8,6 +8,9 @@
     "start": "webpack-dev-server"
   },
   "dependencies": {
+    "bootstrap": "beta",
+    "jquery": "^3.2.1",
+    "popper.js": "^1.11.1",
     "vue": "^2.4.2"
   },
   "devDependencies": {

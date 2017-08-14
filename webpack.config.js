@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -29,7 +30,7 @@ module.exports = {
                 }
             },
             {
-                test: /\.scss$/,
+                test: /\.(s)?css$/,
                 use: extractSass.extract({
                     use: [{
                         loader: 'css-loader',
@@ -50,7 +51,13 @@ module.exports = {
     },
     plugins: [
         extractSass,
-        html
+        html,
+        new webpack.ProvidePlugin({
+            $: 'jquery',
+            jQuery: 'jquery',
+            'window.jQuery': 'jquery',
+            Popper: ['popper.js', 'default']
+        })
     ],
     devtool: 'source-map'
 };
