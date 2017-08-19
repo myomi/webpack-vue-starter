@@ -15,7 +15,6 @@
         </svg>
         <div>
             <button class="btn btn-primary" v-on:click="addText">テキスト</button>
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Small modal</button>
         </div>
         <modal>
         </modal>
