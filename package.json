@@ -4,8 +4,9 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "build": "webpack -p",
-    "start": "webpack-dev-server"
+    "build": "yarn run clean && webpack -p",
+    "start": "webpack-dev-server",
+    "clean": "rimraf dist"
   },
   "dependencies": {
     "bootstrap": "beta",
@@ -23,6 +24,7 @@
     "node-sass": "^4.5.3",
     "postcss-loader": "^2.0.6",
     "precss": "^2.0.0",
+    "rimraf": "^2.6.1",
     "sass-loader": "^6.0.6",
     "style-loader": "^0.18.2",
     "vue-loader": "^13.0.4",
