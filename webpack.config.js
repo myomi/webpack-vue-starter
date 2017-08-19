@@ -38,6 +38,17 @@ module.exports = {
                             sourceMap: true
                         }
                     }, {
+                        loader: 'postcss-loader',
+                        options: {
+                            plugins: function () {
+                                return [
+                                    require('precss'),
+                                    require('autoprefixer')
+                                ];
+                            },
+                            sourceMap: true
+                        }
+                    }, {
                         loader: 'sass-loader',
                         options: {
                             sourceMap: true
